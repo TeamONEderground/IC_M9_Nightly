@@ -1,0 +1,6 @@
+TaskID : 426888
+Project : HIMA_UHL_L50_SENSE70
+SKU : HTC Europe[401]
+ROM Ver : 1.32.401.15
+Customization Id : 3016534
+RCMS Id : 1486

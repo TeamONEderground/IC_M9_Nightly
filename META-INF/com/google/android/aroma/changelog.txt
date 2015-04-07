@@ -1,0 +1,3 @@
+InsertCoin 1.0.0
+- initial release
+- all IC apps / tweaks / mods / optimizations included

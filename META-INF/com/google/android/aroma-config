@@ -1,0 +1,333 @@
+﻿ini_set("rom_name",             "InsertCoin HTC ONE M9");
+ini_set("rom_version",          "1.0.0");
+ini_set("rom_date",             "April, 2015");
+ini_set("rom_author",           "baadnewz");
+ini_set("rom_device",           "All M9 variants");
+
+ini_set("force_colorspace","rgba");
+ini_set("dp","6");
+
+splash(4000, "splash");
+
+fontresload( "0", "ttf/Roboto-Regular.ttf", "12" );
+fontresload( "1", "ttf/Roboto-Regular.ttf", "18" ); 
+theme("sense5");
+  
+#################################################################################################################################################################
+#
+# InsertCoin Welcome
+#
+#################################################################################################################################################################
+
+viewbox(
+  "Welcome to InsertCoin",
+  "\n\n"+
+  "                <b>Welcome to "+ini_get("rom_name")+
+  "</b>\n"+
+  "                                      -_-_-_-\n\n"+	
+  "          You're about to flash the one and only\n"+
+  "                  <b><#00f>"+ini_get("rom_name")+"</#> - "+ini_get("rom_version")+"</b>\n\n"+
+  "     InsertCoin is a stable and battery friendly rom\n"+
+  "           It's tweaked, fast and bloatware free.\n"+
+  "          Always based on the latest Android version\n\n"+	
+  "                                      -_-_-_-\n\n"+	
+  "                <#00f><b>Unique experience on your Way!</b></#>\n\n"+
+  "                                      -_-_-_-\n\n"+	
+  "\n"+
+  "<b>Rom       : <#00f>"+ini_get("rom_name")+"</#> - "+ini_get("rom_version")+"</#>\n"+
+  "Devs       : <#080>"+ini_get("rom_author")+"</#>\n"+	
+  "Base	      : <#080>M9 WWE - Sense 7 - 1.32.401.15</#>\n"+
+  "Kernel    : <#080>HTC Stock</#>\n"+	
+  "Support : <#080>"+ini_get("rom_device")+"</#>\n"+
+  "Build      : <#080>"+ini_get("rom_date")+"</#></b>\n\n"+
+  "                                      -_-_-_-\n\n",
+  "@welcome"
+);
+
+#################################################################################################################################################################
+#
+# Insertcoin ChangeLOG
+#
+#################################################################################################################################################################
+textbox(
+  "ChangeLOG",
+  "InsertCoin ChangeLOG",
+  "@info",
+ resread("changelog.txt")
+);
+
+#################################################################################################################################################################
+#
+# InsertCoin Wipe Menu
+#
+#################################################################################################################################################################
+
+selectbox(
+  "InsertCoin - Wipe Selection",
+  "<#c00><b>Note:</b></#>\nPlease select desired install method\n ",
+  "@wipe",
+  "wipe.prop",
+  
+  "Install without wiping",	"Keeps data and tries to auto-select previous selection during Setup Wizard",		1,
+  "Perform a full wipe",	"Wipes data and tries to auto-select previous selection during Setup Wizard",		0,
+  "Update only",			"Keeps data and previous selected mods - Don't use if AROMA Options changed",		0
+);
+
+
+selectbox(
+	"InsertCoin - Dalvik Cache Wipe",
+	"<#c00><b>Note:</b></#>\nPlease select\n ",
+	"@wipe",
+	"dalvikwipe.prop",
+  
+	"Wipe Dalvik-Cache",						"Recommended Way, slow 1st boot if ART is used",1,
+	"Don't Wipe Dalvik-Cache",				    "Saves a lot of time on 1st boot if ART is used, can cause issues",0
+	);
+
+
+
+if prop("wipe.prop","selected.0") !="3" then
+resexec("scripts/restore.sh");
+#################################################################################################################################################################
+#
+# InsertCoin Device Model Selection
+#
+#################################################################################################################################################################
+	
+selectbox(
+  "InsertCoin - Device Model Selection",
+  "<#c00><b>Note:</b></#>\nPlease select your device model\n ",
+  "@sim",
+  "model.prop",
+  
+  "International",				"",1
+#  "AT&T",						"",0,
+#  "T-Mobile US",				"",0,
+#  "Sprint",				    	"",0,
+#  "Verizon",		    		"",0
+);
+
+
+#################################################################################################################################################################
+#
+# InsertCoin Remove HTC Apps Selection
+#
+#################################################################################################################################################################
+
+checkbox(
+  "InsertCoin Remove HTC Apps",
+  "<#c00><b>Note:</b></#>\nPlease select the apps you want to remove\n ",
+  "@apps",
+  "deletehapps.prop",
+
+  "HTC Advantage",        "",  0,
+  "HTC AndroidHtcSync",   "",  0,
+  "HTC Backup",           "",  0,
+  "HTC Calculator",       "",  0,
+  "HTC Calendar",         "",  0,
+  "HTC Car & HTC Speak",  "",  0,
+  "HTC Dot View",         "",  0,
+  "Htc File Manager",     "",  0,
+  "HTC Flashlight",       "",  0,
+  "HTC FM Radio",         "",  0,
+  "HTC Gallery",          "",  0,
+  "HTC Guide",            "",  0,
+  "HTC Live Wallpapers",  "",  0,
+  "HTC Mail",             "",  0,
+  "HTC Messages",         "",  0,
+  "HTC Music Player",     "",  0,
+  "HTC Scribble",         "",  0,
+  "HTC Sound Recorder",   "",  0,
+  "HTC Transfer Tool",    "",  0,
+  "HTC Video Player",     "",  0,
+  "HTC Weather",          "",  0,
+  "HTC WorldClock",       "",  0,
+  "HTC Zoe",              "",  0
+
+ );	 
+
+
+#################################################################################################################################################################
+#
+# InsertCoin Additional Widgets Selection
+#
+#################################################################################################################################################################
+
+checkbox(
+  "InsertCoin Remove HTC Widgets",
+  "<#c00><b>Note:</b></#>\nPlease select the  Widgets you want to remove\n ",
+  "@apps",
+  "deletewidgets.prop",
+  
+  "HTC AutoRotate Widget",   		"",  0,
+  "HTC BackgroundData Widget",		"",  0,
+  "HTC Bt Widget",       			"",  0,
+  "HTC Calendar Widgets",     		"",  0,
+  "HTC Contact Widgets",			"",  0,  
+  "HTC DataRoaming Widget",   		"",  0,
+  "HTC DataStrip Widget",     		"",  0,
+  "HTC Gps Widget",         		"",  0,
+  "HTC Hotspot Widget",         	"",  0,  
+  "HTC Music Widget",         		"",  0,  
+  "HTC MobileNetwork Widget", 		"",  0,
+  "HTC Notification Widget", 		"",  0,
+  "HTC Profiles Widget",      		"",  0,
+  "HTC Ringtone Widget", 			"",  0,  
+  "HTC ScreenBrightness Widget",  	"",  0,
+  "HTC ScreenTimeout Widget",     	"",  0,
+  "HTC Sync Widget",         		"",  0,  
+  "HTC WiFi Widget",           		"",  0,
+  "HTC Power Profile",           	"",  0
+ );
+
+#################################################################################################################################################################
+#
+# InsertCoin Apps Removal
+#
+#################################################################################################################################################################
+
+
+
+
+checkbox(
+  "InsertCoin Remove Apps",
+  "<#c00><b>Note:</b></#>\nPlease select the apps you want to remove\n ",
+  "@apps",
+  "deleteapps.prop",
+
+  "Google Chrome",        "",  0,
+  "Google CloudPrint",    "",  0,  
+  "Google Drive",         "",  0, 
+  "Google Gmail",         "",  0,  
+  "Google Hangouts",      "",  0,
+  "Google Maps",		  "",  0,
+  "Google Plus",          "",  0,  
+  "Google Search",        "",  0,
+  "Google TTS",           "",  0,
+  "Google Youtube",       "",  0,
+  "AdAway",          	  "",  0,
+  "Dropbox",		      "",  0,
+  "Es File Explorer",     "",  0,  
+  "Facebook",       	  "",  0,
+  "Twitter",         	  "",  0
+ );	 
+
+#################################################################################################################################################################
+#
+# InsertCoin Special features
+#
+#################################################################################################################################################################
+
+checkbox(
+  "InsertCoin Special Features",
+  "<#c00><b>Note:</b></#>\nPlease select special features you want\n ",
+  "@apps",
+  "sfeatures.prop",
+  "Exchange Hack",				        "Disable the need for pin on corporate emails",				0,
+  "IC Battery Mods",				    "You'll need to use IC Themes Apps to apply them",			0,
+  "Center Clock",				        "Center Status Bar Clock",									0
+
+ ); 
+ 
+#################################################################################################################################################################
+#
+# InsertCoin persist.sys.scrollingcache
+#
+#################################################################################################################################################################
+	
+selectbox(
+  "InsertCoin - persist.sys.scrollingcache",
+  "<#c00><b>Note:</b></#>\nPlease select your prefered persist.sys.scrollingcache\n\n ",
+  "@lux",
+  "persistcache.prop",
+  
+  "Enable Cache - All times",					"No Lag at all",1,
+  "Enable Cache - Unless app specifies off",  	"Maybe some lag",0,
+  "Disable Cache - Unless app specifies on",	"Less lag but some apps could be laggy",0,
+  "Disable Cache - All times",					"Could cause lag",0  
+);
+
+
+#################################################################################################################################################################
+#
+# InsertCoin End Aroma Config Backup/Restore
+#
+#################################################################################################################################################################
+endif;
+
+#If selected update only, just restore settings from system
+if prop("wipe.prop","selected.0") == "3" then
+    pleasewait("Reading configurations...");
+    setvar("rest_status", resexec("scripts/restore.sh"));
+    if (getvar("rest_status") != "0") then
+	  alert(
+	      "Error",
+	      "Some files from previous configuration are missing\nPlease perform standard installation",
+	      "@alert"
+	  );
+	  back("1");
+    endif;
+endif;
+#################################################################################################################################################################
+#
+# InsertCoin Installation
+#
+#################################################################################################################################################################
+
+ini_set("text_next", "Next >");
+
+menubox(
+  "InsertCoin Installer",
+  "Ready to install",
+  "@info",
+  "menu.prop",
+  "Install InsertCoin","","@install",
+  "Abort installation","","@cancel"
+);
+
+if prop("menu.prop","selected")=="2"
+then
+  exit("");
+endif;
+
+setvar("retstatus",
+  install(
+      "InsertCoin Installation",
+	  "Installing <b>"+ini_get("rom_name")+" - "+ini_get("rom_version")+"</b>\n\n"+
+      "Please wait until the installation is finished\n"+
+	  "This may take several minutes.",
+      "@install",
+	  
+      "The installation wizard has successfully installed <b>"+ini_get("rom_name")+
+	  "</b>.\n\nPress Next to continue."
+  )
+);
+
+#################################################################################################################################################################
+#
+# InsertCoin End of Installation
+#
+#################################################################################################################################################################
+
+#Save installation config
+resexec("scripts/save.sh");
+ini_set("text_next", "Finish");
+
+checkviewbox(
+    "Installation Completed",
+    "<#selectbg_g><b>Congratulation...</b></#>\n\n"+
+    "<b>"+ini_get("rom_name")+" - "+ini_get("rom_version")+"</b>\nHas been successfully flashed.\n\n"+
+    "Installer Status: "+getvar("retstatus")+"\n\n",
+	
+    "@finish",
+    "Reboot your device now.",
+    "1",
+    "reboot_it"
+);
+if
+  getvar("reboot_it")=="1"
+then
+  reboot("onfinish");
+endif;
+
+splash(4000, "splash");
