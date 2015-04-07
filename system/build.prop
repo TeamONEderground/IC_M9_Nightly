@@ -440,32 +440,23 @@ persist.gps.qc_nlp_in_use=1
 persist.loc.nlp_name=com.qualcomm.location
 ro.gps.agps_provider=1
 ro.pip.gated=0
-# Disable HTC checkin services
-#ro.config.nocheckin=1
-#ro.config.htc.nocheckin=1
 
 # Disable HTC Error Report
 profiler.force_disable_err_rpt=1
 profiler.force_disable_ulog=1
+
 #IC adds
-persist.adb.notify=0
-#debug.qctwa.statusbar=1
-#debug.qctwa.preservebuf=1
-#com.qc.hardware=true
-#persist.sys.ui.hw=true
 persist.sys.scrollingcache=4
-#persist.sys.smoothscrollbar=true
+persist.adb.notify=0
+
 
 #Ambient Display Parameters
-#Duration in milliseconds 5000 = 5 Seconds
 doze.pulse.duration.visible=5000
-#Brightness level values 1 to 235
 doze.pulse.brightness=17
-# ART tweaks
-#dalvik.vm.dex2oat-thread_count=4
-#dalvik.vm.dex2oat-flags "interpret-only"
-#dalvik.vm.image-dex2oat-flags ""
 
-#MultiUser Support
-fw.show_multiuserui=1
-fw.max_users=5
+# ART tweaks
+dalvik.vm.dex2oat-thread_count=4
+dalvik.vm.dex2oat-flags "everything"
+dalvik.vm.image-dex2oat-flags "everything"
+dalvik.vm.image-dex2oat-filter=everything
+dalvik.vm.dex2oat-filter=everything
